@@ -1,5 +1,5 @@
 {% set name = "httpstan" %}
-{% set version = "4.5.0" %}
+{% set version = "4.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
-  sha256: f4d81e2ecbf17fce6a03fea7200d10ab03fbad1a7f3db1453464ea12c4fa740c
+  sha256: fb36a8c19f740cc43a108226688ba7711ebb64d2f0eda2e4c44f2add8f9bea50
 
 build:
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [py<37] 
-  
+  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<37]
+
 
 requirements:
   build:
