@@ -1,25 +1,25 @@
 {% set name = "httpstan" %}
-{% set version = "4.6.1" %}
+{% set version = "4.7.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
+  url: https://github.com/aseyboldt/httpstan/archive/refs/heads/fix-libs.tar.gz
+  #url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
+  #sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
 
 build:
   number: 2
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [py<37] 
-  
+  skip: True  # [py<38] 
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
+    - make
     - {{ compiler('cxx') }}
   host:
     - pip
@@ -37,9 +37,15 @@ requirements:
     - webargs  >=7.0
 
 test:
+  requires:
+    - pytest
+  source_files:
+    - tests
   imports:
     - httpstan
     - httpstan.services
+  commands:
+    - pytest tests
 
 about:
   home: https://pypi.org/project/httpstan/
