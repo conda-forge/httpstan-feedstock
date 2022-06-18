@@ -12,8 +12,7 @@ source:
 
 build:
   number: 2
-  skip: True  # [py<38] 
-  skip: True  # [osx]
+  skip: True  # [py<38 or osx]
 
 requirements:
   build:
@@ -40,8 +39,8 @@ requirements:
     - python
     - setuptools  >=41.0
     - webargs  >=7.0
-    - {{ compiler('cxx') }}  #[not win]
-    - {{ compiler('m2w64_cxx') }}  #[win]
+    - {{ compiler('cxx') }}  # [not win]
+    - {{ compiler('m2w64_cxx') }}  # [win]
 
 test:
   requires:
@@ -49,7 +48,6 @@ test:
     - apispec
     - prance
     - pytest-asyncio
-    - flex
     - openapi-spec-validator
   source_files:
     - tests
