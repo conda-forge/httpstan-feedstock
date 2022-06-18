@@ -19,8 +19,12 @@ requirements:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - pybind11                               # [build_platform != target_platform]
-    - make
-    - {{ compiler('cxx') }}
+    - make                                   #[not win]
+    - {{ compiler('cxx') }}                  #[not win]
+    - {{ compiler('m2w64_cxx') }}            #[win]
+    - m2w64-make                             #[win]
+    - m2-filesystem                          #[win]
+    - m2-coreutils                           #[win]
   host:
     - pip
     - poetry  >=1.1.4
@@ -35,10 +39,16 @@ requirements:
     - python
     - setuptools  >=41.0
     - webargs  >=7.0
+    - {{ compiler('cxx') }}                  #[not win]
+    - {{ compiler('m2w64_cxx') }}            #[win]
 
 test:
   requires:
     - pytest
+    - apispec
+    - prance
+    - pytest-asyncio
+    - flex
   source_files:
     - tests
   imports:
