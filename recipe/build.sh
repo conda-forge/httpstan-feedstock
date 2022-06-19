@@ -2,9 +2,20 @@
 
 set -ex
 
-export TBB_CXX_TYPE=${c_compiler}
-export STAN_THREADS=True
+#export STAN_THREADS=True
+#export TBB_CXX_TYPE=${c_compiler}
+#export TBB_INTERFACE_NEW=true
+#export TBB_INC=${PREFIX}/include/
+#export TBB_LIB=${PREFIX}/lib/
+#export PRECOMPILED_HEADERS=false
 
-make -j1
+#echo "prefix is " ${PREFIX}
 
-${PYTHON} -m pip install --no-deps .
+#make conda -j1
+
+$PYTHON -m poetry build
+$PYTHON -m pip install dist/*.whl -vv
+#$PYTHON -m pip install .
+#$PYTHON -m pip install .
+
+#python -c "import httpstan.model, asyncio; asyncio.run(httpstan.models.build_services_extension_module('data {}'))"
