@@ -11,7 +11,7 @@ export PRECOMPILED_HEADERS=false
 
 #echo "prefix is " ${PREFIX}
 
-make conda -j1
+make -f Makefile.conda conda -j1
 
 ${PYTHON} -m poetry build
 ${PYTHON} -m pip install dist/*.whl -vv

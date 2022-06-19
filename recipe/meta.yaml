@@ -31,7 +31,7 @@ requirements:
     - python
     - tbb-devel  # [not win]
     - sundials ==6.0
-    - Eigen
+    - eigen
     - boost
     - tbb-devel
     - pip
@@ -48,7 +48,7 @@ requirements:
     #- {{ compiler('m2w64_cxx') }}  # [win]
     - boost
     - sundials ==6.0
-    - Eigen
+    - eigen
     - tbb-devel  # [not win]
     - pybind11  >=2.6.2
   run_constrained:
