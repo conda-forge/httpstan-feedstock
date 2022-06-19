@@ -27,13 +27,13 @@ requirements:
     #- m2-coreutils  # [win]
   host:
     - poetry  >=1.1.4
-    #- pybind11  >=2.6.2
+    - pybind11  >=2.6.2
     - python
-    #- tbb-devel  # [not win]
-    #- sundials ==6.0
-    #- Eigen
-    #- boost
-    #- tbb-devel
+    - tbb-devel  # [not win]
+    - sundials ==6.0
+    - Eigen
+    - boost
+    - tbb-devel
     - pip
   run:
     - aiohttp  >=3.7
