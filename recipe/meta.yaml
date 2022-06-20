@@ -11,12 +11,12 @@ source:
   #sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
 
 build:
-  number: 4
+  number: 5
   skip: True  # [py<38 or python_impl == "pypy"]
 
 requirements:
   build:
-    - python  # [build_platform != target_platform]
+    - python  # [build_platform != target_platform or win]
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - make  # [not win]
     - {{ compiler('cxx') }}  # [not win]
