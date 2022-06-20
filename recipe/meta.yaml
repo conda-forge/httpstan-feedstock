@@ -23,6 +23,8 @@ requirements:
     - m2w64-make  # [win]
     - m2-filesystem  # [win]
     - m2-coreutils  # [win]
+    - python  # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
   host:
     - poetry  >=1.1.4
     - pybind11  >=2.6.2

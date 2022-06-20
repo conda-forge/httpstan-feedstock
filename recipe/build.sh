@@ -3,7 +3,6 @@
 set -ex
 
 export STAN_THREADS=True
-export TBB_CXX_TYPE=${c_compiler}
 export TBB_INTERFACE_NEW=true
 export TBB_INC=${PREFIX}/include/
 export TBB_LIB=${PREFIX}/lib/

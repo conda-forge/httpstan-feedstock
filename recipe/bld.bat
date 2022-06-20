@@ -1,7 +1,6 @@
 @ECHO ON
 
 set STAN_THREADS=TRUE
-set TBB_CXX_TYPE=%c_compiler%
 set TBB_INTERFACE_NEW=true
 set TBB_INC=%PREFIX%/include/
 set TBB_LIB=%PREFIX%/lib/
