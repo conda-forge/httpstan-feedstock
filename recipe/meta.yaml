@@ -29,7 +29,7 @@ requirements:
     - pybind11  >=2.6.2
     - python
     - sundials ==6.0
-    - boost >=1.75
+    - boost-cpp >=1.75
     - pip
     - eigen <3.4
     - rapidjson
@@ -45,7 +45,7 @@ requirements:
     - webargs  >=7.0
     - {{ compiler('cxx') }}  # [not win]
     - {{ compiler('m2w64_cxx') }}  # [win]
-    - boost >=1.75
+    - boost-cpp >=1.75
     - sundials ==6.0
     - eigen <3.4
     - pybind11  >=2.6.2

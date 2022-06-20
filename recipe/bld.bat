@@ -13,5 +13,5 @@ if errorlevel 1 exit 1
 python -m poetry build
 if errorlevel 1 exit 1
 
-python -m pip install dist/*.whl
+python -m pip install --no-index --find-links ./dist httpstan
 if errorlevel 1 exit 1
