@@ -33,7 +33,7 @@ requirements:
     - pip
     - eigen <3.4
     - rapidjson
-    - tbb-devel  # [not win]
+    - tbb-devel
   run:
     - aiohttp  >=3.7
     - appdirs  >=1.4
@@ -50,7 +50,7 @@ requirements:
     - eigen <3.4
     - pybind11  >=2.6.2
     - rapidjson
-    - tbb-devel  # [not win]
+    - tbb-devel
   run_constrained:
     - tbb >=2021  # [win]
 
