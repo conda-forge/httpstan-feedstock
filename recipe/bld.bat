@@ -7,8 +7,6 @@ set TBB_LIB=%PREFIX%/lib/
 set PRECOMPILED_HEADERS=false
 set CXXFLAGS=-I%LIBRARY_INC% -I%LIBRARY_INC%/eigen3 -fpermissive
 
-dir %LIBRARY_INC%
-
 mingw32-make -f Makefile.conda conda -j1
 if errorlevel 1 exit 1
 
