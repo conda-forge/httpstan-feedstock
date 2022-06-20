@@ -1,8 +1,18 @@
 @ECHO ON
 
 set STAN_THREADS=TRUE
-mingw32-make -j%CPU_COUNT%
+set TBB_CXX_TYPE=%c_compiler%
+set TBB_INTERFACE_NEW=true
+set TBB_INC=%PREFIX%/include/
+set TBB_LIB=%PREFIX%/lib/
+set PRECOMPILED_HEADERS=false
+
+
+mingw32-make -f Makefile.conda conda -j%CPU_COUNT%
 if errorlevel 1 exit 1
 
-python -m pip install . --no-deps
+python -m poetry build
+if errorlevel 1 exit 1
+
+python -m pip install dist/*.whl
 if errorlevel 1 exit 1
