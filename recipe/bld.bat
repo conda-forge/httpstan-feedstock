@@ -5,6 +5,7 @@ set TBB_INTERFACE_NEW=true
 set TBB_INC=%PREFIX%/include/
 set TBB_LIB=%PREFIX%/lib/
 set PRECOMPILED_HEADERS=false
+set CXXFLAGS=-I%LIBRARY_INC%
 
 
 mingw32-make -f Makefile.conda conda -j1
