@@ -7,7 +7,7 @@ set TBB_LIB=%PREFIX%/lib/
 set PRECOMPILED_HEADERS=false
 
 
-mingw32-make -f Makefile.conda conda -j%CPU_COUNT%
+mingw32-make -f Makefile.conda conda -j1
 if errorlevel 1 exit 1
 
 python -m poetry build
