@@ -1,31 +1,49 @@
 {% set name = "httpstan" %}
-{% set version = "4.6.1" %}
+{% set version = "4.7.2" %}
+{% set MATH_VERSION = "4.3.2" %}
+{% set STAN_VERSION = "2.29.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
+  - url: https://github.com/aseyboldt/httpstan/archive/refs/heads/condalibs.tar.gz
+    #url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
+    #sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
+  - url: https://github.com/stan-dev/math/archive/v{{ MATH_VERSION }}.tar.gz
+    folder: archives/math
+  - url: https://github.com/stan-dev/stan/archive/v{{ STAN_VERSION }}.tar.gz
+    folder: archives/stan
+  - url: https://github.com/stan-dev/stanc3/releases/download/v{{ STAN_VERSION }}/mac-stanc
+    folder: archives
+  - url: https://github.com/stan-dev/stanc3/releases/download/v{{ STAN_VERSION }}/linux-stanc
+    folder: archives
+  - url: https://github.com/stan-dev/stanc3/releases/download/v{{ STAN_VERSION }}/windows-stanc
+    folder: archives
 
 build:
-  number: 1
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [py<37] 
-  
+  number: 5
+  skip: True  # [win or py<38 or python_impl == "pypy"]
 
 requirements:
   build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - pybind11                               # [build_platform != target_platform]
+    - python  # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - {{ compiler('cxx') }}
+    - make
+    - pkg-config
   host:
-    - pip
     - poetry  >=1.1.4
     - pybind11  >=2.6.2
     - python
+    - sundials ==6.0
+    - boost-cpp >=1.75
+    - pip
+    - eigen <3.4
+    - rapidjson
+    - tbb
+    - tbb-devel
   run:
     - aiohttp  >=3.7
     - appdirs  >=1.4
@@ -35,11 +53,29 @@ requirements:
     - python
     - setuptools  >=41.0
     - webargs  >=7.0
+    - {{ compiler('cxx') }}
+    - {{ pin_compatible("boost-cpp", max_pin='x.x.x') }}
+    - {{ pin_compatible("eigen", max_pin='x.x.x') }}
+    - {{ pin_compatible("pybind11", max_pin='x.x.x') }}
+    - sundials ==6.0
+    - rapidjson
+    - tbb-devel
+    - tbb
 
 test:
+  requires:
+    - pytest
+    - apispec
+    - prance
+    - pytest-asyncio
+    - openapi-spec-validator
+  source_files:
+    - tests
   imports:
     - httpstan
     - httpstan.services
+  commands:
+    - pytest tests
 
 about:
   home: https://pypi.org/project/httpstan/
