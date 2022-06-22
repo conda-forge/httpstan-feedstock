@@ -24,7 +24,7 @@ source:
 
 build:
   number: 5
-  skip: True  # [py<38 or python_impl == "pypy"]
+  skip: True  # [win or py<38 or python_impl == "pypy"]
 
 requirements:
   build:
@@ -32,11 +32,11 @@ requirements:
     - cross-python_{{ target_platform }}  # [build_platform != target_platform]
     - make  # [not win]
     - {{ compiler('cxx') }}  # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
-    - m2w64-make  # [win]
-    - m2-filesystem  # [win]
-    - m2-coreutils  # [win]
     - pkg-config
+    #- {{ compiler('m2w64_cxx') }}  # [win]
+    #- m2w64-make  # [win]
+    #- m2-filesystem  # [win]
+    #- m2-coreutils  # [win]
   host:
     - poetry  >=1.1.4
     - pybind11  >=2.6.2
@@ -58,7 +58,7 @@ requirements:
     - setuptools  >=41.0
     - webargs  >=7.0
     - {{ compiler('cxx') }}  # [not win]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    #- {{ compiler('m2w64_cxx') }}  # [win]
     - boost-cpp >=1.75
     - sundials ==6.0
     - eigen <3.4
