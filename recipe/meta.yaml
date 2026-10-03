@@ -27,6 +27,7 @@ requirements:
     - poetry-core  >=1.0.0
     - pybind11  >=2.6.2
     - python
+    - setuptools  >=41.0
   run:
     - aiohttp  >=3.7
     - appdirs  >=1.4
