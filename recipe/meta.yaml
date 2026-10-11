@@ -1,5 +1,5 @@
 {% set name = "httpstan" %}
-{% set version = "4.6.1" %}
+{% set version = "4.17.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/stan-dev/httpstan/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 703e5e04e60651e0004574bb9695827d759fd13eb0d6bd67f827c1bfa0a1fd31
+  sha256: 65b580be59782bf180f38833ca950cc40cba6e410d0f73ecc9db71ca5a094a03
 
 build:
-  number: 4
-  script: "{{ PYTHON }} -m pip install . -vv"
-  skip: True  # [py<37] 
-  
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv
+  skip: True  # [py<312]
+
 
 requirements:
   build:
@@ -24,9 +24,10 @@ requirements:
     - {{ stdlib("c") }}
   host:
     - pip
-    - poetry  >=1.1.4
+    - poetry-core  >=1.0.0
     - pybind11  >=2.6.2
     - python
+    - setuptools  >=41.0
   run:
     - aiohttp  >=3.7
     - appdirs  >=1.4
@@ -56,3 +57,4 @@ extra:
     - mxr-conda
     - achangeo
     - oblute
+    - pb01ka
